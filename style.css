@@ -134,25 +134,27 @@ body {
 .card {
   position: absolute;
   background: white;
-  min-height: 25vmin;
-  max-height: 40vmin; /* altura máxima antes de aparecer scroll */
+  height: 0; /* escondido inicialmente */
   width: 43vmin;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   left: 2.5vmin;
-  top: 0vmin;
-  animation: slide-rev 0.2s ease-out;
+  top: 15vmin; /* parte de dentro do envelope */
+  opacity: 0;
   border-radius: 1vmin;
   box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.1);
   border: 0.3vmin solid #ffc0d5;
-  padding: 2vmin;
   text-align: center;
-  overflow-y: auto; /* ativa rolagem quando necessário */
-  scroll-behavior: smooth;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 2;
+  padding: 0;
 }
 
+.container.open .card {
+  height: 35vmin; /* mostra a carta ao abrir */
+  opacity: 1;
+  padding: 2vmin;
+  overflow-y: auto;
+}
 
 .message {
   font-size: 2.7vmin;
@@ -165,6 +167,11 @@ body {
   max-width: 100%;
   white-space: normal;
   overflow-wrap: break-word;
+}
+
+.container.open .message {
+  opacity: 1;
+  animation: text-fade-in 1s 0.5s forwards, float-text 3s infinite ease-in-out;
 }
 
 .cover {
@@ -209,6 +216,10 @@ body {
   transform-origin: top;
   animation: open-rev 0.5s;
   border-radius: 1vmin 1vmin 0 0;
+}
+
+.container.open .lid {
+  animation: open 0.5s forwards;
 }
 
 .card .side-bow {
@@ -257,20 +268,6 @@ body {
   z-index: 4;
 }
 
-.container.open .lid {
-  animation: open 0.5s forwards;
-}
-
-.container.open .card {
-  animation: slide 0.2s 0.5s forwards;
-  opacity: 1;
-}
-
-.container.open .message {
-  opacity: 1;
-  animation: text-fade-in 1s 0.5s forwards, float-text 3s infinite ease-in-out;
-}
-
 .shadow {
   position: relative;
   top: 3vmin;
@@ -288,22 +285,9 @@ body {
   }
 }
 
-@keyframes slide {
-  100% {
-    transform: translatey(-15vmin);
-    z-index: 2;
-  }
-}
-
 @keyframes open-rev {
   from {
     transform: rotatex(-180deg);
-  }
-}
-
-@keyframes slide-rev {
-  from {
-    transform: translatey(-15vmin);
   }
 }
 
