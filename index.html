@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Envelope Hello Kitty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="bg-hearts"></div>
+<div class="bg-circles"></div>
+
+<div class="clock" id="clock"></div>
+
+<div class="btn-container">
+  <div class="sender-receiver">por: Bilulu</div>
+  <button class="open-btn" id="openBtn">
+    <i class="fas fa-envelope"></i>
+  </button>
+  <div class="sender-receiver">para: Jubilu </div>
+</div>
+
+<div class="container" id="envelopeContainer">
+  <div class="envelope"></div>
+  <div class="card">
+    <div class="side-bow"></div>
+    <div class="side-bow-center"></div>
+    <h1 class="message">Se eu pudesse, tiraria todas as suas dores e colocaria em mim, só para poder te ver feliz todos os dias.</h1>
+  </div>
+  <div class="cover"></div>
+  <div class="lid"></div>
+  <div class="shadow"></div>
+</div>
+
+<audio id="openSound" src="https://www.soundjay.com/mechanical/sounds/envelope-open-01.mp3"></audio>
+<audio id="closeSound" src="https://www.soundjay.com/mechanical/sounds/envelope-close-01.mp3"></audio>
+
+<script>
+  const container = document.getElementById('envelopeContainer');
+  const openBtn = document.getElementById('openBtn');
+  const openSound = document.getElementById('openSound');
+  const closeSound = document.getElementById('closeSound');
+  let isOpen = false;
+
+  function toggleEnvelope() {
+    isOpen = !isOpen;
+    container.classList.toggle('open');
+
+    if (isOpen) {
+      openSound.currentTime = 0;
+      openSound.play();
+      openBtn.innerHTML = '<i class="fas fa-envelope-open"></i>';
+    } else {
+      closeSound.currentTime = 0;
+      closeSound.play();
+      openBtn.innerHTML = '<i class="fas fa-envelope"></i>';
+    }
+  }
+
+  openBtn.addEventListener('click', toggleEnvelope);
+  container.addEventListener('click', toggleEnvelope);
+
+  function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
+</body>
+</html>
