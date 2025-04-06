@@ -322,3 +322,17 @@ body {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-0.5vmin); }
 }
+.container.open .envelope {
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.container:not(.open) .card {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.container:not(.open) .message {
+  opacity: 0 !important;
+}
