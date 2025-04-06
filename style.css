@@ -135,7 +135,7 @@ body {
   position: absolute;
   background: white;
   min-height: 25vmin;
-  max-height: 45vmin;
+  max-height: 45vmin; /* altura máxima antes de aparecer scroll */
   width: 43vmin;
   display: flex;
   flex-direction: column;
@@ -149,9 +149,10 @@ body {
   border: 0.3vmin solid #ffc0d5;
   padding: 2vmin;
   text-align: center;
-  overflow-y: auto;
+  overflow-y: auto; /* ativa rolagem quando necessário */
   scroll-behavior: smooth;
 }
+
 
 .message {
   font-size: 2.7vmin;
@@ -320,52 +321,4 @@ body {
 @keyframes float-text {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-0.5vmin); }
-}
-
-/* 📱 Versão Mobile */
-@media (max-width: 600px) {
-  .container {
-    transform: scale(1.2);
-  }
-
-  .card {
-    width: 90vw;
-    max-height: 60vh;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 4vw;
-    padding: 4vw;
-  }
-
-  .message {
-    font-size: 4.2vw;
-  }
-
-  .btn-container {
-    bottom: 2vmin;
-    flex-direction: column;
-    gap: 1vmin;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .sender-receiver {
-    font-size: 4vw;
-    padding: 1.5vmin 3vmin;
-    text-align: center;
-  }
-
-  .open-btn {
-    width: 12vmin;
-    height: 12vmin;
-  }
-
-  .open-btn i {
-    font-size: 6vmin;
-  }
-
-  .clock {
-    font-size: 4vw;
-    padding: 1vmin 2vmin;
-  }
 }
