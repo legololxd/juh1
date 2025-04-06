@@ -1,81 +1,322 @@
-html: <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Envelope Hello Kitty</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+css: @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
-<div class="bg-hearts"></div>
-<div class="bg-circles"></div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-<div class="clock" id="clock"></div>
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Comic Neue', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffebf3 0%, #ffd6e7 50%, #ffc0d5 100%);
+  position: relative;
+}
 
-<div class="btn-container">
-  <div class="sender-receiver">por: Bilulu</div>
-  <button class="open-btn" id="openBtn">
-    <i class="fas fa-envelope"></i>
-  </button>
-  <div class="sender-receiver">para: Jubilu </div>
-</div>
+.bg-hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ff85a2" fill-opacity="0.15" d="M30,50 Q50,30 70,50 Q85,65 70,80 Q50,95 30,80 Q15,65 30,50"/></svg>');
+  background-size: 15vmin;
+  animation: bg-move 30s infinite linear;
+}
 
-<div class="container" id="envelopeContainer">
-  <div class="envelope"></div>
-  <div class="card">
-    <div class="side-bow"></div>
-    <div class="side-bow-center"></div>
-    <h1 class="message">Queria agradecer por você ter entrado na minha vida e me suportar, kk. Conversar com você diariamente me traz uma alegria enorme. Acho que sou meio estranho ou grudento demais com meus vídeos bobos falando de você, mas espero que eu também te alegre quando conversamos.
-Passar o tempo com você, mesmo que seja através de uma tela, é tão legal. Até quando não temos assunto e só ficamos enviando vídeos aleatórios e rindo de coisas bobas, ainda assim é legal kk.
-      Temos bastante coisa em comum, gosto de musicas, modo de ver algumas coisas ou ate youtubers que vemos kk, acho que posso falar que tenho medo de te perder.
-      Saiba que estarei aqui sempre que precisar, te ajudando com algo ou apenas escutando algo que tem a falar, acho que só tenho isso pra falar por enquanto kk, se cuida viu jubilu, se for necessario irei te aprisionar e alimentar direito pra nao morrer kkkkk.</h1>
-  </div>
-  <div class="cover"></div>
-  <div class="lid"></div>
-  <div class="shadow"></div>
-</div>
+@keyframes bg-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 100vmin 100vmin; }
+}
 
-<audio id="openSound" src="https://www.soundjay.com/mechanical/sounds/envelope-open-01.mp3"></audio>
-<audio id="closeSound" src="https://www.soundjay.com/mechanical/sounds/envelope-close-01.mp3"></audio>
+.bg-circles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, #ff9eb5 2px, transparent 2px);
+  background-size: 4vmin 4vmin;
+  opacity: 0.1;
+}
 
-<script>
-  const container = document.getElementById('envelopeContainer');
-  const openBtn = document.getElementById('openBtn');
-  const openSound = document.getElementById('openSound');
-  const closeSound = document.getElementById('closeSound');
-  let isOpen = false;
+.clock {
+  position: absolute;
+  top: 1vmin;
+  left: 2vmin;
+  font-size: 2.5vmin;
+  color: #ff85a2;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5vmin 1vmin;
+  border-radius: 1vmin;
+  box-shadow: 0 0 1vmin rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  z-index: 5;
+}
 
-  function toggleEnvelope() {
-    isOpen = !isOpen;
-    container.classList.toggle('open');
+.btn-container {
+  position: absolute;
+  bottom: 5vmin;
+  display: flex;
+  align-items: center;
+  gap: 3vmin;
+  z-index: 5;
+}
 
-    if (isOpen) {
-      openSound.currentTime = 0;
-      openSound.play();
-      openBtn.innerHTML = '<i class="fas fa-envelope-open"></i>';
-    } else {
-      closeSound.currentTime = 0;
-      closeSound.play();
-      openBtn.innerHTML = '<i class="fas fa-envelope"></i>';
-    }
+.sender-receiver {
+  font-size: 3vmin;
+  color: #ff85a2;
+  background: white;
+  padding: 1vmin 2vmin;
+  border-radius: 2vmin;
+  box-shadow: 0 0 1vmin rgba(0, 0, 0, 0.1);
+  border: 0.3vmin solid #ffc0d5;
+  font-weight: bold;
+}
+
+.open-btn {
+  background: white;
+  border: 0.3vmin solid #ffc0d5;
+  border-radius: 50%;
+  width: 8vmin;
+  height: 8vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 1vmin rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.open-btn:hover {
+  transform: scale(1.1);
+  background: #fff5f8;
+}
+
+.open-btn i {
+  font-size: 4vmin;
+  color: #ff85a2;
+}
+
+.container {
+  position: relative;
+  top: 0vmin;
+  cursor: pointer;
+  transition: transform 0.3s;
+  filter: drop-shadow(0 1vmin 1vmin rgba(255, 142, 166, 0.3));
+  z-index: 2;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+.envelope {
+  position: relative;
+  background: #ff9eb5;
+  height: 30vmin;
+  width: 48vmin;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1vmin;
+  border-radius: 0 0 1vmin 1vmin;
+  box-shadow: 0 1vmin 2vmin rgba(0, 0, 0, 0.1);
+  background-image: 
+    radial-gradient(#ffc0d5 20%, transparent 20%),
+    radial-gradient(#ffc0d5 20%, transparent 20%);
+  background-size: 3vmin 3vmin;
+  background-position: 0 0, 1.5vmin 1.5vmin;
+}
+
+.card {
+  position: absolute;
+  background: white;
+  height: 25vmin;
+  width: 43vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 2.5vmin;
+  top: 0vmin;
+  animation: slide-rev 0.2s ease-out;
+  border-radius: 1vmin;
+  box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s;
+  border: 0.3vmin solid #ffc0d5;
+  padding: 2vmin;
+  text-align: center;
+}
+
+.message {
+  font-size: 2.7vmin;
+  color: #ff85a2;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.5s;
+  text-shadow: 0 0 0.5vmin rgba(255, 192, 213, 0.5);
+  line-height: 1.4;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.cover {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-bottom: 15vmin solid #ffc0d5;
+  border-left: 24vmin solid transparent;
+  border-right: 24vmin solid transparent;
+  top: 15vmin;
+  z-index: 3;
+}
+
+.cover::after {
+  position: absolute;
+  content: '';
+  border-left: 24.5vmin solid #ffd6e2;
+  border-bottom: 15vmin solid transparent;
+  border-top: 15vmin solid transparent;
+  top: -15vmin;
+  left: -24vmin;
+}
+
+.cover::before {
+  position: absolute;
+  content: '';
+  border-right: 24.5vmin solid #ffd6e2;
+  border-bottom: 15vmin solid transparent;
+  border-top: 15vmin solid transparent;
+  top: -15vmin;
+  left: -0.5vmin;
+}
+
+.lid {
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-top: 15vmin solid #ff85a2;
+  border-left: 24vmin solid transparent;
+  border-right: 24vmin solid transparent;
+  top: 0;
+  transform-origin: top;
+  animation: open-rev 0.5s;
+  border-radius: 1vmin 1vmin 0 0;
+}
+
+.card .side-bow {
+  position: absolute;
+  width: 6vmin;
+  height: 6vmin;
+  background: #ff85a2;
+  border-radius: 50%;
+  top: -3vmin;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.card .side-bow::before, 
+.card .side-bow::after {
+  content: '';
+  position: absolute;
+  width: 8vmin;
+  height: 3vmin;
+  background: #ff85a2;
+  border-radius: 2vmin;
+}
+
+.card .side-bow::before {
+  top: 1.5vmin;
+  left: -4vmin;
+  transform: rotate(-30deg);
+}
+
+.card .side-bow::after {
+  top: 1.5vmin;
+  right: -4vmin;
+  transform: rotate(30deg);
+}
+
+.card .side-bow-center {
+  position: absolute;
+  width: 2.5vmin;
+  height: 2.5vmin;
+  background: white;
+  border-radius: 50%;
+  top: 1.75vmin;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.container.open .lid {
+  animation: open 0.5s forwards;
+}
+
+.container.open .card {
+  animation: slide 0.2s 0.5s forwards;
+  opacity: 1;
+}
+
+.container.open .message {
+  opacity: 1;
+  animation: text-fade-in 1s 0.5s forwards, float-text 3s infinite ease-in-out;
+}
+
+.shadow {
+  position: relative;
+  top: 3vmin;
+  border-radius: 50%; 
+  opacity: 0.5;
+  height: 2vmin;
+  width: 48vmin;
+  background: #ffc0d5;
+  filter: blur(0.5vmin);
+}
+
+@keyframes open {
+  100% {
+    transform: rotatex(180deg);
   }
+}
 
-  openBtn.addEventListener('click', toggleEnvelope);
-  container.addEventListener('click', toggleEnvelope);
-
-  function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+@keyframes slide {
+  100% {
+    transform: translatey(-15vmin);
+    z-index: 2;
   }
+}
 
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
+@keyframes open-rev {
+  from {
+    transform: rotatex(-180deg);
+  }
+}
 
-</body>
-</html>
+@keyframes slide-rev {
+  from {
+    transform: translatey(-15vmin);
+  }
+}
+
+@keyframes text-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(2vmin);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-text {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.5vmin); }
+}
