@@ -134,23 +134,25 @@ body {
 .card {
   position: absolute;
   background: white;
-  height: 25vmin;
+  min-height: 25vmin;
+  max-height: 40vmin; /* altura máxima antes de aparecer scroll */
   width: 43vmin;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   left: 2.5vmin;
   top: 0vmin;
   animation: slide-rev 0.2s ease-out;
   border-radius: 1vmin;
   box-shadow: 0 0 2vmin rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transition: opacity 0.5s;
   border: 0.3vmin solid #ffc0d5;
   padding: 2vmin;
   text-align: center;
+  overflow-y: auto; /* ativa rolagem quando necessário */
+  scroll-behavior: smooth;
 }
+
 
 .message {
   font-size: 2.7vmin;
