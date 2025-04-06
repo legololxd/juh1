@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+css: @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
 * {
   margin: 0;
@@ -135,7 +135,7 @@ body {
   position: absolute;
   background: white;
   min-height: 25vmin;
-  max-height: 35vmin; /* altura máxima antes de aparecer scroll */
+  max-height: 40vmin; /* altura máxima antes de aparecer scroll */
   width: 43vmin;
   display: flex;
   flex-direction: column;
