@@ -336,3 +336,28 @@ body {
 .container:not(.open) .message {
   opacity: 0 !important;
 }
+
+/* Esconde a carta quando estiver aberta */
+.container.open .envelope {
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+/* Esconde a mensagem quando estiver fechada */
+.container:not(.open) .card {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.container:not(.open) .message {
+  opacity: 0 !important;
+}
+
+/* Permite scroll na mensagem */
+.message {
+  overflow-y: auto;
+  max-height: 20vmin;
+  padding-right: 1vmin;
+}
+
